@@ -1,10 +1,10 @@
 # Project-Pantry
 An ingredient tracking application
 
-___
-# Project Overview
-## Pantry use cases:
-### Whats in my fridge
+
+## Project Overview
+### Pantry use cases:
+#### Whats in my fridge
 Find recipes that use as many of the
 ingredients you have available as
 possible while limiting missing
