@@ -9,7 +9,7 @@ Find recipes that use as many of the
 ingredients you have available while limiting missing
 ingredients. This feature will also store users ingredients into a running log.
 
-#### What should I make
+**What should I make**
 Get a list of recipes using a special
 ingredient (or several ingredients) that
 you want to turn into something
@@ -21,7 +21,7 @@ dessert.
 
 
 #### Mealplanning
-Although this is a milestone type 3, I would liek to tap into the APIS' databse and offer customized meal plans or to build your own using the interactive meal planning tool
+Although this is a milestone type 3, I would like to tap into the database and offer customized meal plans or allow the user build their own using the interactive meal planning tool
 
 
 
