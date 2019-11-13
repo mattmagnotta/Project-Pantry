@@ -4,11 +4,11 @@ An ingredient tracking application
 ___
 ##Project Overview
 #### Pantry use cases:
-    ##### Whats in my fridge
-    Find recipes that use as many of the
-    ingredients you have available as
-    possible while limiting missing
-    ingredients.
+##### Whats in my fridge
+Find recipes that use as many of the
+ingredients you have available as
+possible while limiting missing
+ingredients.
 
 A secondary feature may be along the lines of a notification system. Once a users inventory gets below a set amount Pantry will add your ingredients to an exportable grocery list.
 
