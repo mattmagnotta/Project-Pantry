@@ -33,4 +33,10 @@ Once you login in you will be redirected to the users homepage. The homepage wil
 
 The side nav will be a flyout nav. Once a user clicks the hamburger button the side nav will slide out. Starting from the top of the nav and moving downwards, the nav will have a link to go to the users feed, a link to plan and shop, and a link to run the inventory. Then the majority of the nav will be made up of saved recipes and user collections. (e.g) a folder for breakfeast, a folder for lunches, and a folder for dinners.
 
-When you click on "collection folder", you can select recipes. When a recipe is selected it will go to a view that renders a price breakdown graph and a nutritional data graph. This view will also show the user which ingedients they need to purchase
+When you click on "collection folder", you can select recipes. When a recipe is selected it will go to a view that renders a price breakdown graph and a nutritional data graph. This view will also show the user which ingredients they need to purchase.
+
+# Data model
+
+Pantry will use a user model, a recipe model, and an ingredient model.
+
+![alt text](/desktop/user_table)
