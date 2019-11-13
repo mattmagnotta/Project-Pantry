@@ -39,4 +39,4 @@ When you click on "collection folder", you can select recipes. When a recipe is 
 
 Pantry will use a user model, a recipe model, and an ingredient model.
 
-![Alt text](/code/projects/capstone/user_table.jpg?raw=true "Optional Title")
+![Alt text](/Users/matthewmagnotta/code/projects/Capstone/user_table.png raw=true "Optional Title")
