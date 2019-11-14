@@ -9,7 +9,7 @@ Find recipes that use as many of the
 ingredients you have available while limiting missing
 ingredients. This feature will also store users ingredients into a running log.
 
-**What should I make**
+#### What should I make
 Get a list of recipes using a special
 ingredient (or several ingredients) that
 you want to turn into something
@@ -43,6 +43,18 @@ The user model will store a first & last name , username, email address, and pas
 
 The recipe model will store an id, recipe name, recipe ingredients, recipe link.
 
-the ingredients model will store, id, name , a boolean value for having the ingredient or having to buy it. ()
+the ingredients model will store, id, name , a boolean value for having the ingredient or having to buy it.
 
 # Schedule
+
+#### Week 1
+I would like to have the general layout of the page done. I want to begin building on the nav during this phase.
+
+#### Week 2
+During this phase I hope to start stitching together all the pieces to make web page. I want the nav bar to be functioning by the end of this phase.
+
+#### Week 3
+The final phase ... I hope to work out all the bugs and tweak final design during this phase. I would like to have the inventory tool working and completed, as thats the meat and potatoes of the web application.
+
+#### After the dust settles
+I hope to add the meal planning feature to allow the users to log recipes for certain days of the week. 
