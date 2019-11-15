@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
+{% extends 'pantryapp/base.html' %}
 
-    </body>
-</html>
+{% block content %}
+<!-- body -->
+<!-- <ul>
+    {% for recipe in recipes %}
+    <li>{{ recipe.name }}</li>
+    {% endfor %}
+</ul> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th> Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ingredient in ingredients %}
+        <tr>
+            <td>{{ingredient.name}}</td>
+            <td>{{ingredient.quantity}}</td>
+            <td>{{ingredient.price}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+<!-- body  -->
+{% endblock %}
