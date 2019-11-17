@@ -1,32 +1,78 @@
 {% extends 'pantryapp/base.html' %}
 
 {% block content %}
-<!-- body -->
-<!-- <ul>
-    {% for recipe in recipes %}
-    <li>{{ recipe.name }}</li>
-    {% endfor %}
-</ul> -->
+<style type="text/css">
+    #main {
+        max-width: 75%;
+        margin: 0 auto;
+    }
 
-<table>
-    <thead>
-        <tr>
-            <th>Ingredient</th>
-            <th>Quantity</th>
-            <th> Price</th>
-        </tr>
-    </thead>
+    #input_div{
+        display: flex;
+        justify-content: center;
+    }
+    #button_div{
+        display: flex;
+        justify-content: space-between;
 
-    <tbody>
-        {% for ingredient in ingredients %}
-        <tr>
-            <td>{{ingredient.name}}</td>
-            <td>{{ingredient.quantity}}</td>
-            <td>{{ingredient.price}}</td>
-        </tr>
-        {% endfor %}
+    }
+    #clear_button{
+        display:flex
+        justify-content:right
+    }
+    hr {
+        background-color: teal;
+        height: 1px;
+        border: 0;
+    }
+</style>
+<div id="main">
+    <div id="input_div">
+    <form action="{% url 'pantryapp:save_ingredient' %}" method="post">
+        {% csrf_token %}
+        <button id="add_ingredient" class="btn-floating cyan darken-1" type="submit"> <i class="material-icons">add</i>
+        </button>
+        <div class="input-field inline">
+            <input type="text" name="ingredient_name" id="ingredient_name" required />
+            <label for="ingredient_name">Add an ingredient...</label>
+        </div>
+        <div class="input-field inline">
+            <input type="number" name="ingredient_name" id="ingredient_name" required />
+            <label for="ingredient_name">Quantity...</label>
+        </div>
+    </form>
+    </div>
+    <hr>
+    <div id="clear_button">
+    <button id="clear_ingredients" class='btn-floating tooltipped" data-position="bottom" data-tooltip="I am a tooltip"'><i class="material-icons">clear</i></button>
+    </div>
+    <table class=striped>
 
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th> Price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ingredient.name}}</td>
+                <td>{{ingredient.quantity}}</td>
+                <td>{{ingredient.price}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <hr>
+    <div id="button_div">
+        <button id="clear_ingredients" class='btn-floating tooltipped" data-position="bottom" data-tooltip="I am a tooltip"'><i class="material-icons">clear</i></button>
+        <button id="get_recipes" class='btn teal'>Get Recipes</button>
+    </div>
+</div>
+
 <!-- body  -->
 {% endblock %}
