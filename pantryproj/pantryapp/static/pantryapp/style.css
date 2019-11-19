@@ -1,0 +1,39 @@
+#input_div{
+    display: flex;
+    justify-content: center;
+}
+.sidenav{
+    background-color: lightgrey;
+}
+.brand_logo{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#main {
+    max-width: 75%;
+    margin: 0 auto;
+}
+
+#input_div{
+    display: flex;
+    justify-content: center;
+}
+#button_div{
+    display: flex;
+    justify-content: space-between;
+
+}
+#clear_button{
+    display:flex
+    justify-content:right
+}
+hr {
+    background-color: teal;
+    height: 1px;
+    border: 0;
+}
+.login_div{
+    max-width: 50%;
+    margin: 0 auto;
+}

@@ -14,15 +14,13 @@ def index(request):
     return render(request, 'pantryapp/index.html', context)
 
 
+# @login_required
 def ingredients(request):
-    ingredients = Ingredient.objects.all()
-    quantity = Ingredient.objects.all()
-    price = Ingredient.objects.all()
+    # ingredients = Ingredient.objects.all()
+    ingredients = request.user.ingredients.all()
     print(ingredients)
     context = {
-        'ingredients': ingredients,
-        'quantity': quantity,
-        'price': price,
+        'ingredients': ingredients
     }
     return render(request, 'pantryapp/ingredients.html', context)
 
@@ -31,12 +29,13 @@ def ingredients(request):
 def save_ingredient(request):
     print(request.POST)
     ingredient_name = request.POST['ingredient_name']
+    ingredient_quantity = request.POST['ingredient_quantity']
     print('*'*100)
     print(ingredient_name)
     print('*'*100)
     # use requests to ask api for the ingredient price
     price_request = requests.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples')
     print(price_request)
-    ingredient = Ingredient(name=ingredient_name, user=request.user)
+    ingredient = Ingredient(name=ingredient_name, quantity=ingredient_quantity, user=request.user)
     ingredient.save()
     return HttpResponseRedirect(reverse('pantryapp:ingredients'))

@@ -12,34 +12,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style type="text/css">
-        #input_div{
-            display: flex;
-            justify-content: center;
-        }
-        .sidenav{
-            background-color: lightgrey;
-        }
-    </style>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'pantryapp/style.css' %}">
+
 </head>
 
 <body>
     <nav>
       <div class="nav-wrapper cyan darken-3">
-        <a href="#" class="brand-logo"><img src="{% static 'pantryapp/images/pantry_logo.png' %}" width="150" height="auto"></a>
+        <a href="{% url 'pantryapp:index' %}" class="brand-logo"><img src="{% static 'pantryapp/images/pantry_logo_v2.png' %}" width="150" height="auto"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="">Home</a></li>
+          <li><a href="{% url 'pantryapp:index' %}">Home</a></li>
+          <li><a href="{% url 'pantryapp:ingredients' %}">Ingredient Tracker</a></li>
           <li><a href="badges.html">Recipes</a></li>
-          <li><a href="pantryapp:ingredients/">Tools</a></li>
         </ul>
       </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="sass.html">Home</a></li>
+      <li><a href="{url 'pantryapp:index'}">Home</a></li>
       <li><a href="badges.html">Recipes</a></li>
-      <li><a href="collapsible.html">Tools</a></li>
+      <li><a href="{% url 'pantryapp:ingredients' %}">Tools</a></li>
     </ul>
 
     {% block content %}

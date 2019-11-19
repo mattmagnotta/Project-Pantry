@@ -1,45 +1,22 @@
 {% extends 'pantryapp/base.html' %}
 
 {% block content %}
-<style type="text/css">
-    #main {
-        max-width: 75%;
-        margin: 0 auto;
-    }
 
-    #input_div{
-        display: flex;
-        justify-content: center;
-    }
-    #button_div{
-        display: flex;
-        justify-content: space-between;
-
-    }
-    #clear_button{
-        display:flex
-        justify-content:right
-    }
-    hr {
-        background-color: teal;
-        height: 1px;
-        border: 0;
-    }
-</style>
 <div id="main">
     <div id="input_div">
     <form action="{% url 'pantryapp:save_ingredient' %}" method="post">
         {% csrf_token %}
-        <button id="add_ingredient" class="btn-floating cyan darken-1" type="submit"> <i class="material-icons">add</i>
-        </button>
+
         <div class="input-field inline">
             <input type="text" name="ingredient_name" id="ingredient_name" required />
             <label for="ingredient_name">Add an ingredient...</label>
         </div>
         <div class="input-field inline">
-            <input type="number" name="ingredient_name" id="ingredient_name" required />
+            <input type="number" name="ingredient_quantity" id="ingredient_quantity" required />
             <label for="ingredient_name">Quantity...</label>
         </div>
+        <button id="add_ingredient" class="btn-floating cyan darken-1" type="submit"> <i class="material-icons">add</i>
+        </button>
     </form>
     </div>
     <hr>
