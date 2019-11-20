@@ -19,6 +19,7 @@ class Ingredient(models.Model):
 
 
 
+
 # recipes view
 #     take the logged in user, find all their ingredients
 #     put the ingedients into the url for the request

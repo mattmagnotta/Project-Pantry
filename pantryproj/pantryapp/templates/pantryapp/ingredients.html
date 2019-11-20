@@ -43,7 +43,8 @@
     </table>
     <hr>
     <div id="button_div">
-        <button id="clear_ingredients" class="btn-floating tooltipped" data-position="bottom" data-tooltip="clear all"><i class="material-icons">clear</i></button>
+        <a class="btn-floating tooltipped" href="{% url 'pantryapp:clear_table' %}" id="clear_table" class="btn-floating tooltipped" data
+        position="bottom" data-tooltip="clear all"><i class="material-icons">clear</i></a>
         <button id="get_recipes" class='btn teal'>Get Recipes</button>
     </div>
 </div>

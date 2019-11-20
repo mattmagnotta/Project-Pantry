@@ -6,4 +6,5 @@ urlpatterns = [
   path('', views.index, name='index'),
   path('ingredients/', views.ingredients, name='ingredients'),
   path('save_ingredient/', views.save_ingredient, name='save_ingredient'),
+  path('clear_table/', views.clear_table, name='clear_table')
 ]
