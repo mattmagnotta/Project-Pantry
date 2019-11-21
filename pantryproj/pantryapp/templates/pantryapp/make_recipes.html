@@ -1,0 +1,8 @@
+{% extends 'pantryapp/base.html' %}
+{% block content %}
+
+<img id="recipe_thumbnail" src={{recipe.image}}>
+<div>{{recipe.instructions}}</div>
+<br>
+<div>{{recipe.analyzedInstructions}}
+{% endblock %}

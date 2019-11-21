@@ -32,7 +32,7 @@
             <li>|</li>
             <li><a href="{% url 'pantryapp:ingredients' %}">Ingredients </a></li>
             <li>|</li>
-            <li><a href="badges.html">Recipes</a></li>
+            <li><a href="{% url 'pantryapp:save_recipes' %}">Recipes</a></li>
             <li>|</li>
             <li><a class="dropdown-trigger"  data-target="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
@@ -63,7 +63,7 @@
                 coverTrigger: false,
                 hover: true,
             });
-            
+
             var elems_sidenav = document.querySelectorAll('.sidenav')
             var instances_sidenav = M.Sidenav.init(elems_sidenav, {});
 

@@ -6,6 +6,13 @@
     padding: : 100px !important;
 
 }
+
+
+/* index */
+
+.row containter{
+    background-color: lightgrey;
+}
 /* body */
 #main {
     max-width: 75%;
@@ -63,4 +70,17 @@ hr {
     margin : 0 auto;
     max-width: 600px;
 
+}
+
+.parallax-container {
+   height: 400px ;
+ }
+
+ .header{
+     color: teal;
+ }
+/* make_recipes */
+
+#recipe_thumbnail{
+    border-radius: 20px;
 }

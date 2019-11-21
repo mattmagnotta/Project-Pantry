@@ -12,39 +12,13 @@
             <label for="ingredient_name">Add an ingredient...</label>
         </div>
         <div class="input-field inline">
-            <input type="number" name="ingredient_quantity" id="ingredient_quantity" required />
+            <input type="number" name="ingredient_quantity" id="ingredient_quantity" value="1" required />
             <label for="ingredient_name">Quantity...</label>
         </div>
         <button id="add_ingredient" class="btn-floating cyan darken-1" type="submit"> <i class="material-icons">add</i>
         </button>
     </form>
     </div>
-    <form action="#">
-    <p>
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>Red</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" />
-        <span>Yellow</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input class="with-gap" name="group1" type="radio"  />
-        <span>Green</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" disabled="disabled" />
-        <span>Brown</span>
-      </label>
-    </p>
-  </form>
     <hr>
     <table class=striped>
 
@@ -74,6 +48,9 @@
         <a class='btn' href="{% url 'pantryapp:get_recipes' %}" id="get_recipes" class='btn teal'>Get Recipes</a>
     </div>
 </div>
+<script type='text/javascript'>
+    document.querySelector("#ingredient_name").focus()
+    </script>
 
 <!-- body  -->
 {% endblock %}

@@ -20,7 +20,6 @@ def index(request):
 @login_required
 def ingredients(request):
     ingredients = request.user.ingredients.all()
-    print(ingredients)
     context = {
         'ingredients': ingredients
     }
@@ -60,16 +59,41 @@ def get_recipes(request):
     # print(response.text)
     recipes = json.loads(response.text)
     # recipes = recipes[10:20]
-    for i in range(len(recipes)):
-        recipe_id = recipes[i]["id"]
-        name = recipes[i]["title"]
-        image = recipes[i]["image"]
+    # for i in range(len(recipes)):
+    #     recipe_id = recipes[i]["id"]
+    #     name = recipes[i]["title"]
+    #     image = recipes[i]["image"]
 
     context = {
         'recipes' : recipes,
-        'recipe_id' : recipe_id,
-        'name' : name,
-        'image': image,
+        # 'recipe_id' : recipe_id,
+        # 'name' : name,
+        # 'image': image,
 
     }
     return render(request, 'pantryapp/recipe.html', context)
+
+
+
+def make_recipes(request, recipe_id):
+    url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
+    response = requests.get(url)
+    recipe_information = json.loads(response.text)
+    # print(recipe_instructions)
+    # recipe_instructions = recipe_information['instructions']
+    # print(recipe_instructions)
+    # print(url)
+
+    context = {
+        'recipe': recipe_information,
+    }
+    # for i in range(len(recipe_information)):
+    #     recipe_steps = recipe_instructions[0]['steps'][i]['number']
+    #     print(recipe_steps)
+    return render(request, 'pantryapp/make_recipes.html', context)
+
+
+
+
+def save_recipes(request):
+    return render(request, 'pantryapp/save_recipes.html',)
