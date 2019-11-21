@@ -25,7 +25,7 @@ def login_user(request):
     user = authenticate(request, username=username, password=password)
     if user is not None: # username and password matched a user
         login(request, user)
-        return HttpResponseRedirect(reverse('userapp:index'))
+        return HttpResponseRedirect(reverse('pantryapp:index'))
     else:
         return HttpResponseRedirect(reverse('userapp:login_register'))
 
@@ -33,4 +33,4 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('userapp:login_register'))
+    return HttpResponseRedirect(reverse('pantryapp:index'))

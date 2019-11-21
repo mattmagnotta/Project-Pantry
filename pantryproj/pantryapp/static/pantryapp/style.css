@@ -1,15 +1,12 @@
-#input_div{
-    display: flex;
-    justify-content: center;
-}
+/* nav */
 .sidenav{
     background-color: lightgrey;
 }
-.brand_logo{
-    display: flex;
-    justify-content: flex-start;
-}
+.logo_class{
+    padding: : 100px !important;
 
+}
+/* body */
 #main {
     max-width: 75%;
     margin: 0 auto;
@@ -33,7 +30,37 @@ hr {
     height: 1px;
     border: 0;
 }
-.login_div{
-    max-width: 50%;
-    margin: 0 auto;
+
+.card_flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 20px !important;
+    max-height: 200px !important;
+    min-height: 200px !important;
+
+}
+.card{
+    max-width: 300px;
+    min-width: 200px;
+}
+
+/* login  */
+
+
+#login_div{
+    display: flex;
+    flex-direction: column;
+    margin : 0 auto;
+    max-width: 600px;
+
+}
+#register_div{
+    display: flex;
+    flex-direction: column;
+    margin : 0 auto;
+    max-width: 600px;
+
 }

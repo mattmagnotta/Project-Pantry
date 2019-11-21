@@ -45,7 +45,7 @@
     <div id="button_div">
         <a class="btn-floating tooltipped" href="{% url 'pantryapp:clear_table' %}" id="clear_table" class="btn-floating tooltipped" data
         position="bottom" data-tooltip="clear all"><i class="material-icons">clear</i></a>
-        <button id="get_recipes" class='btn teal'>Get Recipes</button>
+        <a class='btn' href="{% url 'pantryapp:get_recipes' %}" id="get_recipes" class='btn teal'>Get Recipes</a>
     </div>
 </div>
 
