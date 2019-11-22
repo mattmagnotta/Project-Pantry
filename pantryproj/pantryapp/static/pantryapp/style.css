@@ -79,8 +79,3 @@ hr {
  .header{
      color: teal;
  }
-/* make_recipes */
-
-#recipe_thumbnail{
-    border-radius: 20px;
-}

@@ -1,8 +1,88 @@
 {% extends 'pantryapp/base.html' %}
 {% block content %}
+<div class="recipe_instructions_container">
+    <div>
+        <div id=recipe_headings>
+            <h3 id="recipe_title">{{recipe.title}}</h3>
+        </div>
+        <div id="recipe_summary">
+            <h5>Time: {{recipe.readyInMinutes}}mins</h5>
+            <hr>
+            <h5>Likes: {{recipe.aggregateLikes}}</h5>
+            <hr>
+            <h5>Score: {{recipe.spoonacularScore}}<h5>
+        </div>
+        <div>{{recipe.instructions}}</div>
+        <hr>
+        <div id="instructions_ingredients">
+            <div id="recipe_ingredients">
+                <ol>
+                {% for ingredient in recipe.extendedIngredients %}
+                    <li>{{ingredient.original}}</li>
+                {% endfor %}
+                </ol>
+            </div>
+            <div id="instructions_div">
+                <br/>
+                <h2 align="center" id="instructions_heading">Instructions</h2>
+                <div id=instructions_div>
+                <ol>
+                {% for step in recipe.analyzedInstructions.0.steps %}
+                    <li>{{step.step}}</li>
+                {% endfor %}
+                </ol>
+                </div>
+                <a  href="{{recipe.sourceUrl}}" target="blank" class="btn">More infromation</a>
+            </div>
+        </div>
+    </div>
 
-<img id="recipe_thumbnail" src={{recipe.image}}>
-<div>{{recipe.instructions}}</div>
-<br>
-<div>{{recipe.analyzedInstructions}}
+
+    <img id="recipe_thumbnail" src={{recipe.image}}>
+
+</div>
+<style type="text/css">
+    /* make_recipes */
+
+    .recipe_instructions_container{
+        max-width: 1000px;
+        display: flex;
+        flex-direction: row;
+        align-items:flex-start;
+        margin: 0 auto;
+    }
+    #recipe_thumbnail{
+        border-radius: 20px;
+        margin:10px;
+        max-width: 500px;
+        margin-top: 140px;
+    }
+    #recipe_headings{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+    }
+    #image_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    #recipe_title{
+        color:teal;
+    }
+    /* #steps{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    } */
+    #instructions_heading{
+        color: teal;
+    }
+
+
+
+</style>
 {% endblock %}
