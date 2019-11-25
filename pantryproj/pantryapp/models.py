@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Recipe(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
     spoonacular_recipe_id = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
+
 
     def __str__(self):
-        return self.name
+        return self.spoonacular_recipe_id
 
 class Ingredient(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ingredients')

@@ -18,7 +18,12 @@
       <div class="card-title activator grey-text text-darken-4">{{ recipe.title }}<i class="material-icons right">more_vert</i></div>
       <p><a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a></p>
       <div>
-        <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
+        {% if recipe.favorited %}
+          <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite</i>
+        {% else %}
+          <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
+        {% endif %}
+
       </div>
 
     </div>
@@ -43,7 +48,14 @@
               method: 'get',
               url: '/favorite_recipe/' + recipe_id + '/',
           }).then(function(response) {
-            console.log(response)
+              console.log(response)
+              let icon = favorite_bts[i]
+              if (icon.innerText == 'favorite_border') {
+                icon.innerText = 'favorite'
+           } else {
+             icon.innerText = 'favorite_border'
+           }
+              console.log(icon)
           })
       })
   }

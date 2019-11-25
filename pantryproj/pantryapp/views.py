@@ -15,7 +15,7 @@ def index(request):
     }
     return render(request, 'pantryapp/index.html', context)
 
-
+# ingredients table 
 @login_required
 def ingredients(request):
     ingredients = request.user.ingredients.all()
@@ -26,6 +26,10 @@ def ingredients(request):
 
 
 
+        # favorited_recipes_ids.append(recipe.spoonacular_recipe_id)
+    # print(favorited_recipes_ids)
+
+# saves the ingredient to the database
 def save_ingredient(request):
     print(request.POST)
     ingredient_name = request.POST['ingredient_name']
@@ -34,6 +38,8 @@ def save_ingredient(request):
     ingredient.save()
     return HttpResponseRedirect(reverse('pantryapp:ingredients'))
 
+
+# clears the ingredient table
 def clear_table(request):
     ingredients = request.user.ingredients.all()
     ingredients.delete()
@@ -41,7 +47,7 @@ def clear_table(request):
 
 
 
-
+# gets the recipes when the make recipe button is clicked
 @login_required
 def get_recipes(request):
     ingredients = request.user.ingredients.all()
@@ -57,6 +63,11 @@ def get_recipes(request):
     response = requests.get(url)
     # print(response.text)
     recipes = json.loads(response.text)
+    for recipe in recipes:
+        if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
+            recipe['favorited'] = True
+        else:
+            recipe['favorited'] = False
     context = {
         'recipes' : recipes,
 
@@ -64,7 +75,7 @@ def get_recipes(request):
     return render(request, 'pantryapp/recipe.html', context)
 
 
-
+# creates the cards with image recipes
 def make_recipes(request, recipe_id):
     url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
     response = requests.get(url)
@@ -85,23 +96,33 @@ def make_recipes(request, recipe_id):
 
 
 
-def save_recipes(request):
-    return HttpResponse("ok")
-
+# gets the json from spoonacular using recipe id
 def favorite_recipe(request, recipe_id):
     # print(recipe_id)
     user = request.user
     recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=recipe_id).first()
-    print(recipe_id)
-    # if recipe is None:
-    #         # create a recipe
-    # else:
-    #     # delete it
-    #     recipe.delete()
+    print(recipe)
+    if recipe is None:
+        recipe = Recipe(user=user, spoonacular_recipe_id=recipe_id)
+        recipe.save()
+    else:
+        recipe.delete()
 
-
-    # if recipe_id in user.favorited_blog_posts.all():
-    #     user.favorited_blog_posts.remove(blog_post)
-    # else:
-    #     user.favorited_blog_posts.add(blog_post)
     return HttpResponse('ok')
+
+
+# displays the users saved recipes
+def saved_recipes(request):
+    db_recipes = request.user.recipes.all()
+    # favorited_recipes_ids = []
+    recipes = [] # pass to the template
+    for recipe in db_recipes:
+        recipe_id = recipe.spoonacular_recipe_id
+        url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
+        response = requests.get(url)
+        recipe_information = json.loads(response.text)
+        recipes.append(recipe_information)
+    context = {
+        'recipes' : recipes
+    }
+    return render(request, 'pantryapp/saved_recipes.html', context)
