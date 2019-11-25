@@ -7,7 +7,6 @@ from .secrets import spoonacular_api_key
 from django.contrib.auth.decorators import login_required
 
 
-
 # ?apiKey=YOUR-API-KEY.
 def index(request):
     recipes = Recipe.objects.all()
@@ -87,4 +86,22 @@ def make_recipes(request, recipe_id):
 
 
 def save_recipes(request):
-    return render(request, 'pantryapp/save_recipes.html',)
+    return HttpResponse("ok")
+
+def favorite_recipe(request, recipe_id):
+    # print(recipe_id)
+    user = request.user
+    recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=recipe_id).first()
+    print(recipe_id)
+    # if recipe is None:
+    #         # create a recipe
+    # else:
+    #     # delete it
+    #     recipe.delete()
+
+
+    # if recipe_id in user.favorited_blog_posts.all():
+    #     user.favorited_blog_posts.remove(blog_post)
+    # else:
+    #     user.favorited_blog_posts.add(blog_post)
+    return HttpResponse('ok')

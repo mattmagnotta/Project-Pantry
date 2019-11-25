@@ -1,16 +1,54 @@
 {% extends 'pantryapp/base.html' %}
 {% load static %}
 {% block content %}
+
 <div class="parallax-container">
     <div class="parallax"><img src="{% static 'pantryapp/images/white_bg_ingredients.jpg' %}"></div>
   </div>
   <div class="section white">
     <div class="row container">
       <h2 class="header">Pantry</h2>
-      <p class="grey-text text-darken-3 lighten-3">is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsvPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredients.</p>
+      <p class="grey-text text-darken-3 lighten-3">is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredients.</p>
       <hr>
+      <div id="cards_container">
+          <div class="row">
+           <div class="col s12 m7">
+             <div class="card large">
+               <div class="card-image">
+                 <img src="{% static 'pantryapp/images/ingredient_tracker.png' %}">
+                 <span class="card-title">Card Title</span>
+               </div>
+               <div class="card-content">
+                 <p>I am a very simple card. I am good at containing small bits of information.
+                 I am convenient because I require little markup to use effectively.</p>
+               </div>
+
+             </div>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col s12 m7">
+             <div class="card">
+               <div class="card-image">
+                 <img src="">
+                 <span class="card-title">Card Title</span>
+               </div>
+               <div class="card-content">
+                 <p>I am a very simple card. I am good at containing small bits of information.
+                 I am convenient because I require little markup to use effectively.</p>
+               </div>
+               <div class="card-action">
+                 <a href="#">This is a link</a>
+               </div>
+             </div>
+           </div>
+       </div>
+    </div>
     </div>
   </div>
+
+
   <div class="parallax-container">
     <div class="parallax"><img src="{% static 'pantryapp/images/salads.jpg' %}"></div>
   </div>

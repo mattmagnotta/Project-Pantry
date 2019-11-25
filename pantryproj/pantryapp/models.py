@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     spoonacular_recipe_id = models.CharField(max_length=200)

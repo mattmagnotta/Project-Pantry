@@ -7,15 +7,15 @@
     <form action="{% url 'pantryapp:save_ingredient' %}" method="post">
         {% csrf_token %}
 
-        <div class="input-field inline">
+        <div class="input-field inline ">
             <input type="text" name="ingredient_name" id="ingredient_name" required />
-            <label for="ingredient_name">Add an ingredient...</label>
+            <label class="for="ingredient_name">Add an ingredient...</label>
         </div>
         <div class="input-field inline">
             <input type="number" name="ingredient_quantity" id="ingredient_quantity" value="1" required />
             <label for="ingredient_name">Quantity...</label>
         </div>
-        <button id="add_ingredient" class="btn-floating cyan darken-1" type="submit"> <i class="material-icons">add</i>
+        <button id="add_ingredient" class="btn-floating teal" type="submit"> <i class="material-icons">add</i>
         </button>
     </form>
     </div>

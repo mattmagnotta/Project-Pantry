@@ -1,24 +1,53 @@
 {% extends 'pantryapp/base.html' %}
 
+<!-- <style type="text/css">
+
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 {% block content %}
 <div class="card_flex">
 {% for recipe in recipes %}
 <!-- <div id='images_grid>' -->
-<div class="card medium ">
+    <div class="card medium ">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="{{recipe.image}}">
     </div>
     <div class="card-content">
       <div class="card-title activator grey-text text-darken-4">{{ recipe.title }}<i class="material-icons right">more_vert</i></div>
-      <p><a href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a></p>
+      <p><a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a></p>
+      <div>
+        <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
+      </div>
+
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
       <p>Here is some more information about this product that is only revealed once clicked on.</p>
     </div>
   </div>
-<!-- </div> -->
 
-    {% endfor %}
+{% endfor %}
+
 </div>
+<script type='text/javascript'>
+
+  let favorite_bts = document.querySelectorAll('.favorite_bts')
+  for (let i=0; i<favorite_bts.length; ++i) {
+      favorite_bts[i].addEventListener('click', function(event) {
+          let recipe_id = this.dataset.recipe_id
+          console.log(recipe_id)
+          // let url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + recipe_id + '&apiKey=' + spoonacular_api_key
+          axios({
+              method: 'get',
+              url: '/favorite_recipe/' + recipe_id + '/',
+          }).then(function(response) {
+            console.log(response)
+          })
+      })
+  }
+
+
+</script>
 {% endblock %}

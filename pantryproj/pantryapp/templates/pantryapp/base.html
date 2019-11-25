@@ -16,8 +16,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3cce5528f8.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="{% static 'pantryapp/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+
+
+
 
 </head>
 
@@ -25,7 +30,7 @@
 
     <nav>
     <div class="nav-wrapper cyan darken-3">
-        <a href="{% url 'pantryapp:index' %}"><img class="logo_class" src="{% static 'pantryapp/images/pantry_logo_v2.png' %}" width="150" height="auto" padding='100'></a>
+        <a href="{% url 'pantryapp:index' %}"><img class="logo_class" src="{% static 'pantryapp/images/pantry-logo.png' %}" width="150" height="auto" padding='100'></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'pantryapp:index' %}">Home</a></li>
@@ -78,6 +83,8 @@
                 indicators: true
             });
         });
+
+
     </script>
 </body>
 

@@ -1,4 +1,19 @@
+/* landing page */
+
+
+
+#cards_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
 /* nav */
+a:hover {
+  cursor: pointer !important;
+}
 .sidenav{
     background-color: lightgrey;
 }
@@ -17,6 +32,7 @@
 #main {
     max-width: 75%;
     margin: 0 auto;
+    background-color: whitesmoke  !important;
 }
 
 #input_div{
@@ -79,3 +95,11 @@ hr {
  .header{
      color: teal;
  }
+
+
+/* heart icon */
+
+.heart {
+  font-size: 25px;
+	color:red;
+}
