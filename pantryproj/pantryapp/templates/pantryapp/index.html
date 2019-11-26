@@ -1,6 +1,16 @@
 {% extends 'pantryapp/base.html' %}
 {% load static %}
 {% block content %}
+<style type=text/css>
+  #comming_soon{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    max-width=800px !important;
+
+  }
+</style>
 
 <div class="parallax-container">
     <div class="parallax"><img src="{% static 'pantryapp/images/white_bg_ingredients.jpg' %}"></div>
@@ -8,9 +18,20 @@
   <div class="section white">
     <div class="row container">
       <h2 class="header">Pantry</h2>
-      <p class="grey-text text-darken-3 lighten-3">is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredientsPantry is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredients.</p>
-      <hr>
-      <div id="cards_container">
+      <h6 class="grey-text text-darken-3 lighten-3">is a way to find recipes that use as many of the ingredients you have available while limiting missing ingredients. Our recipe database includes over 360,000 recipes with an option to seach carry out complex searches. </h6>
+      <hr/>
+      <div id="comming_soon">
+        <img src="{% static 'pantryapp/images/visualized_ingredientsv2.png' %}">
+        <img src="{% static 'pantryapp/images/price_breakdownv2.png' %}">
+      </div>
+
+        <!-- <ol>
+          <li>Seach by substitued ingredient</li>
+          <li>Special diets/Intolerances</li>
+          <li>Nutrional Information</li>
+          <li>Price Breakdown visualization</li>
+        </ol> -->
+      <!-- <div id="cards_container">
           <div class="row">
            <div class="col s12 m7">
              <div class="card large">
@@ -25,9 +46,9 @@
 
              </div>
            </div>
-         </div>
+         </div> -->
 
-         <div class="row">
+         <!-- <div class="row">
            <div class="col s12 m7">
              <div class="card">
                <div class="card-image">
@@ -43,7 +64,7 @@
                </div>
              </div>
            </div>
-       </div>
+       </div> -->
     </div>
     </div>
   </div>

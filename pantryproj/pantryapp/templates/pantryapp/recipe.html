@@ -7,34 +7,61 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 {% block content %}
-<div class="card_flex">
-{% for recipe in recipes %}
-<!-- <div id='images_grid>' -->
+<style type=text/css>
+  .favorite_bts:hover{
+    cursor:pointer !important;
+
+  }
+  .button_heart_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    height:180px !important;
+    max-height:180px !important;
+  }
+#recipe_cards_body{
+        max-width:1400px;
+        margin: 0 auto;
+        margin-top:30px;
+  }
+</style>
+<div id="recipe_cards_body">
+  <div class="card_flex">
+  {% for recipe in recipes %}
+  <!-- <div id='images_grid>' -->
     <div class="card medium ">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="{{recipe.image}}">
-    </div>
-    <div class="card-content">
-      <div class="card-title activator grey-text text-darken-4">{{ recipe.title }}<i class="material-icons right">more_vert</i></div>
-      <p><a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a></p>
-      <div>
-        {% if recipe.favorited %}
-          <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite</i>
-        {% else %}
-          <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
-        {% endif %}
-
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{recipe.image}}">
       </div>
+      <div class="card-content">
+        <div class="card-title activator grey-text text-darken-4">{{ recipe.title | truncatechars:40 }}</div>
 
+        <div>
+          <hr>
+          <div class="button_heart_div">
+            <a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a>
+
+            {% if recipe.favorited %}
+              <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite</i>
+            {% else %}
+              <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-    </div>
+  {% endfor %}
+
   </div>
-
-{% endfor %}
-
 </div>
 <script type='text/javascript'>
 
