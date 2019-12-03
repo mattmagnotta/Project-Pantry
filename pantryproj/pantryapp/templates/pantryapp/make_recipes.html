@@ -1,7 +1,56 @@
 {% extends 'pantryapp/base.html' %}
 
 {% block content %}
-<div class="recipe_instructions_container">
+<div class="main_recipe_body">
+  <h3 id="recipe_title">{{recipe.title}}</h3>
+  <div class="make_recipes_container">
+    <!-- <div class="quick_info"> -->
+      <div id='instructions_div'>
+        <div id=recipe_headings>
+            <div id="recipe_thumbail_div">
+              <img id="recipe_thumbnail" src={{recipe.image}}>
+            </div>
+            <hr>
+        </div>
+      </div>
+              <div id="recipe_summary">
+                <div>
+                  <h5>Time: {{recipe.readyInMinutes}}mins</h5>
+                  <hr>
+                  <h5>Likes: {{recipe.aggregateLikes}}</h5>
+                  <hr>
+                  <h5>Score: {{recipe.spoonacularScore}}</h5>
+                  <hr>
+                  <div>{{recipe.instructions}}</div>
+                </div>
+              </div>
+
+  </div>
+  <div id="recipe_ingredients">
+      <ul>
+      {% for ingredient in recipe.extendedIngredients %}
+          <li>{{ingredient.original}}</li>
+      {% endfor %}
+      </ul>
+      <div id="instructions_div">
+          <br/>
+          <h2 align="center" id="instructions_heading">Instructions</h2>
+          <div id=instructions_div>
+          <ol class='spaced_numbers'>
+          {% for step in recipe.analyzedInstructions.0.steps %}
+              <li>{{step.step}}</li>
+          {% endfor %}
+          </ol>
+          </div>
+          <a  href="{{recipe.sourceUrl}}" target="blank" class="btn">More infromation</a>
+      </div>
+
+  </div>
+</div>
+  <!-- </div> -->
+
+
+<!-- <div class="recipe_instructions_container">
     <div>
         <div id=recipe_headings>
             <h3 id="recipe_title">{{recipe.title}}</h3>
@@ -27,7 +76,7 @@
                 <br/>
                 <h2 align="center" id="instructions_heading">Instructions</h2>
                 <div id=instructions_div>
-                <ol>
+                <ol class='spaced_numbers'>
                 {% for step in recipe.analyzedInstructions.0.steps %}
                     <li>{{step.step}}</li>
                 {% endfor %}
@@ -41,7 +90,7 @@
 
     <img id="recipe_thumbnail" src={{recipe.image}}>
 
-</div>
+</div> -->
 <style type="text/css">
     a:hover {
       cursor: pointer !important;
@@ -56,10 +105,8 @@
         margin: 0 auto;
     }
     #recipe_thumbnail{
-        border-radius: 20px;
-        margin:10px;
-        max-width: 500px;
-        margin-top: 140px;
+        margin-top: 20px;
+        margin-right: 20px;
     }
     #recipe_headings{
         display: flex;
@@ -85,8 +132,43 @@
     #instructions_heading{
         color: teal;
     }
+.spaced_numbers{
+
+}
+#instructions_div{
+  display:flex;
+  flex-direction:column;
+}
+
+.make_recipes_container{
+  max-width:1500px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:flex-start;
+}
 
 
+#recipe_summary{
+  display:flex;
+  flex-direction:column;
 
+
+}
+
+.main_recipe_body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto;
+}
+
+#recipe_ingredients{
+  display:flex;
+  flex-direction:row
+  align-items:flex-start;
+  justify-content:flex-start
+}
 </style>
 {% endblock %}

@@ -26,7 +26,6 @@
             <tr>
                 <th>Ingredient</th>
                 <th>Quantity</th>
-                <th> Price</th>
             </tr>
         </thead>
 
@@ -35,7 +34,6 @@
             <tr>
                 <td>{{ingredient.name}}</td>
                 <td>{{ingredient.quantity}}</td>
-                <td>{{ingredient.price}}</td>
             </tr>
             {% endfor %}
 
@@ -47,10 +45,14 @@
         position="bottom" data-tooltip="clear all"><i class="material-icons">clear</i></a>
         <a class='btn' href="{% url 'pantryapp:get_recipes' %}" id="get_recipes" class='btn teal'>Get Recipes</a>
     </div>
-</div>
+  </div>
 <script type='text/javascript'>
     document.querySelector("#ingredient_name").focus()
     </script>
-
+<style type=text/css>
+  #input_div{
+    margin-top:30px;
+  }
+</style>
 <!-- body  -->
 {% endblock %}

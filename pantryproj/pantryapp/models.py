@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
     spoonacular_recipe_id = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
 
 
     def __str__(self):

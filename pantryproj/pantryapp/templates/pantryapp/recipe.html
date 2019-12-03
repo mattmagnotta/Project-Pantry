@@ -39,7 +39,7 @@
   <!-- <div id='images_grid>' -->
     <div class="card medium ">
       <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{recipe.image}}">
+        <a href="{% url 'pantryapp:make_recipes' recipe.id %}"><img class="activator" src="{{recipe.image}}"></a>
       </div>
       <div class="card-content">
         <div class="card-title activator grey-text text-darken-4">{{ recipe.title | truncatechars:40 }}</div>
@@ -49,11 +49,9 @@
           <div class="button_heart_div">
             <a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a>
 
-            {% if recipe.favorited %}
-              <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite</i>
-            {% else %}
-              <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
-            {% endif %}
+            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}" data-recipe_title="{{recipe.title}}" data-recipe_image="{{recipe.image}}">
+            {% if recipe.favorited %}favorite{% else %}favorite_border{% endif %}
+            </i>
 
           </div>
         </div>
@@ -68,21 +66,28 @@
   let favorite_bts = document.querySelectorAll('.favorite_bts')
   for (let i=0; i<favorite_bts.length; ++i) {
       favorite_bts[i].addEventListener('click', function(event) {
-          let recipe_id = this.dataset.recipe_id
-          console.log(recipe_id)
           // let url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + recipe_id + '&apiKey=' + spoonacular_api_key
+          let data = {
+            recipe_id: this.dataset.recipe_id,
+            recipe_title: this.dataset.recipe_title,
+            recipe_image: this.dataset.recipe_image,
+          }
           axios({
-              method: 'get',
-              url: '/favorite_recipe/' + recipe_id + '/',
+              method: 'post',
+              url: '{% url 'pantryapp:favorite_recipe' %}',
+              data: data,
+              headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+              }
           }).then(function(response) {
               console.log(response)
               let icon = favorite_bts[i]
               if (icon.innerText == 'favorite_border') {
                 icon.innerText = 'favorite'
-           } else {
-             icon.innerText = 'favorite_border'
-           }
-              console.log(icon)
+              } else {
+                icon.innerText = 'favorite_border'
+              }
+              console.log(data)
           })
       })
   }

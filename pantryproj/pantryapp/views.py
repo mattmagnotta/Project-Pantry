@@ -91,13 +91,18 @@ def make_recipes(request, recipe_id):
 
 
 # gets the json from spoonacular using recipe id
-def favorite_recipe(request, recipe_id):
-    # print(recipe_id)
+def favorite_recipe(request):
+    data = json.loads(request.body)
+    print(data)
     user = request.user
-    recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=recipe_id).first()
+    id = data['recipe_id']
+    title = data['recipe_title']
+    image = data['recipe_image']
+    recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=id).first()
     print(recipe)
     if recipe is None:
-        recipe = Recipe(user=user, spoonacular_recipe_id=recipe_id)
+        # recipe = Recipe(user=user, spoonacular_recipe_id=id,recipe_image=image, recipe_title=title)
+        recipe = Recipe(user=user, spoonacular_recipe_id=id, title=title, image=image)
         recipe.save()
     else:
         recipe.delete()
@@ -106,26 +111,32 @@ def favorite_recipe(request, recipe_id):
 
 
 # displays the users saved recipes
+@login_required
 def saved_recipes(request):
-    db_recipes = request.user.recipes.all()
-    # favorited_recipes_ids = []
-    recipes = [] # pass to the template
-    for recipe in db_recipes:
-        recipe_id = recipe.spoonacular_recipe_id
-        url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
-        response = requests.get(url)
-        recipe_information = json.loads(response.text)
-        recipes.append(recipe_information)
-
-    for recipe in recipes:
-        if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
-            recipe['favorited'] = True
-        else:
-            recipe['favorited'] = False
+    # db_recipes = request.user.recipes.all()
+    # # favorited_recipes_ids = []
+    # recipes = [] # pass to the template
+    # for recipe in db_recipes:
+    #     recipe_id = recipe.spoonacular_recipe_id
+    #     url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
+    #     response = requests.get(url)
+    #     recipe_information = json.loads(response.text)
+    #     recipes.append(recipe_information)
+    recipes = request.user.recipes.all()
+    # for recipe in recipes:
+    #     if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
+    #         recipe['favorited'] = True
+    #     else:
+    #         recipe['favorited'] = False
     context = {
         'recipes' : recipes
     }
     return render(request, 'pantryapp/saved_recipes.html', context)
+        # recipes = Recipe.objects.all()
+        # context = {
+        #     'recipes': recipes
+        # }
+        # return render(request, 'pantryapp/saved_recipes.html', context)
 # unsaves a recipes
 def unfavorite_recipe(request, recipe_id):
     user = request.user

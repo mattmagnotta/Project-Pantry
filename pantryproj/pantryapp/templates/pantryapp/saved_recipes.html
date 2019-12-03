@@ -1,6 +1,6 @@
 {% extends 'pantryapp/base.html' %}
 {% block content %}
-<style type=text/css>
+<!-- <style type=text/css>
 .recipe_cards_container{
   display:flex;
   flex-direction:row;
@@ -14,7 +14,7 @@
   <div class="card_flex">
   {% for recipe in recipes %}
   <!-- <div id='images_grid>' -->
-    <div class="card medium ">
+    <!-- <div class="card medium ">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="{{recipe.image}}">
       </div>
@@ -22,19 +22,66 @@
         <div class="card-title activator grey-text text-darken-4">{{ recipe.title }}</div>
         <p><a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a></p>
         <div>
-          {% if recipe.favorited %}
-            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite</i>
-          {% else %}
-            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}">favorite_border</i>
-          {% endif %}
+          <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.spoonacular_recipe_id}}" data-recipe_title="{{recipe.title}}" data-recipe_image="{{recipe.image}}">favorite</i>
         </div>
+      <div class="btn"></div>
       </div>
-      <!-- <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-      </div> -->
     </div>
   {% endfor %}
+  </div>
+</div> -->
+<style type=text/css>
+  .favorite_bts:hover{
+    cursor:pointer !important;
+
+  }
+  .button_heart_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    height:180px !important;
+    max-height:180px !important;
+  }
+#recipe_cards_body{
+        max-width:1400px;
+        margin: 0 auto;
+        margin-top:30px;
+  }
+</style>
+<div id="recipe_cards_body">
+  <div class="card_flex">
+  {% for recipe in recipes %}
+  <!-- <div id='images_grid>' -->
+    <div class="card medium ">
+      <div class="card-image waves-effect waves-block waves-light">
+      <a href="{% url 'pantryapp:make_recipes' recipe.id %}"><img class="activator" src="{{recipe.image}}"></a>
+      </div>
+      <div class="card-content">
+        <div class="card-title activator grey-text text-darken-4">{{ recipe.title | truncatechars:40 }}</div>
+
+        <div>
+          <hr>
+          <div class="button_heart_div">
+            <a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a>
+
+            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}" data-recipe_title="{{recipe.title}}" data-recipe_image="{{recipe.image}}">
+            favorite
+            </i>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
   </div>
 </div>
 <script type='text/javascript'>
@@ -42,22 +89,28 @@
   let favorite_bts = document.querySelectorAll('.favorite_bts')
   for (let i=0; i<favorite_bts.length; ++i) {
       favorite_bts[i].addEventListener('click', function(event) {
-          let recipe_id = this.dataset.recipe_id
-          console.log(recipe_id)
-          // let url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + recipe_id + '&apiKey=' + spoonacular_api_key
-          axios({
-              method: 'get',
-              url: '/favorite_recipe/' + recipe_id + '/',
-          }).then(function(response) {
-              console.log(response)
-              let icon = favorite_bts[i]
-              if (icon.innerText == 'favorite_border') {
-                icon.innerText = 'favorite'
-           } else {
-             icon.innerText = 'favorite_border'
-           }
-              console.log(icon)
-          })
+        let data = {
+          recipe_id: this.dataset.recipe_id,
+          recipe_title: this.dataset.recipe_title,
+          recipe_image: this.dataset.recipe_image,
+        }
+        axios({
+            method: 'post',
+            url: '{% url 'pantryapp:favorite_recipe' %}',
+            data: data,
+            headers: {
+              'X-CSRFToken': '{{ csrf_token }}'
+            }
+        }).then(function(response) {
+            console.log(response)
+            let icon = favorite_bts[i]
+            if (icon.innerText == 'favorite_border') {
+              icon.innerText = 'favorite'
+            } else {
+              icon.innerText = 'favorite_border'
+            }
+            console.log(data)
+        })
       })
   }
 
