@@ -55,6 +55,7 @@
         margin: 0 auto;
         margin-top:30px;
   }
+
 </style>
 <div id="recipe_cards_body">
   <div class="card_flex">
@@ -72,7 +73,7 @@
           <div class="button_heart_div">
             <a id="make_recipes_button" class='waves-effect waves-teal btn-flat' href="{% url 'pantryapp:make_recipes' recipe.id %}">Make this recipe...</a>
 
-            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.id}}" data-recipe_title="{{recipe.title}}" data-recipe_image="{{recipe.image}}">
+            <i  class="material-icons favorite_bts" data-recipe_id="{{recipe.spoonacular_recipe_id}}" data-recipe_title="{{recipe.title}}" data-recipe_image="{{recipe.image}}">
             favorite
             </i>
 

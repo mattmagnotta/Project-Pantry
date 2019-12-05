@@ -63,6 +63,7 @@ def get_recipes(request):
     response = requests.get(url)
     # print(response.text)
     recipes = json.loads(response.text)
+    print(recipes[0]['id'])
     for recipe in recipes:
         if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
             recipe['favorited'] = True
@@ -93,7 +94,7 @@ def make_recipes(request, recipe_id):
 # gets the json from spoonacular using recipe id
 def favorite_recipe(request):
     data = json.loads(request.body)
-    print(data)
+    # print(data)
     user = request.user
     id = data['recipe_id']
     title = data['recipe_title']
@@ -106,6 +107,7 @@ def favorite_recipe(request):
         recipe.save()
     else:
         recipe.delete()
+        
 
     return HttpResponse('ok')
 
@@ -138,9 +140,9 @@ def saved_recipes(request):
         # }
         # return render(request, 'pantryapp/saved_recipes.html', context)
 # unsaves a recipes
-def unfavorite_recipe(request, recipe_id):
+def unfavorite_recipe(request,):
     user = request.user
-    recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=recipe_id).first()
+    recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=id).first()
     print(recipe)
     recipe.delete()
 

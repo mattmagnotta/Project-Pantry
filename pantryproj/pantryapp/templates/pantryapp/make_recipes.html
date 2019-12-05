@@ -9,6 +9,14 @@
         <div id=recipe_headings>
             <div id="recipe_thumbail_div">
               <img id="recipe_thumbnail" src={{recipe.image}}>
+              <h3>Ingredients</h3>
+              <div id="recipe_ingredients">
+                  <ul>
+                  {% for ingredient in recipe.extendedIngredients %}
+                      <li>{{ingredient.original}}</li>
+                  {% endfor %}
+                  </ul>
+              </div>
             </div>
             <hr>
         </div>
@@ -21,12 +29,20 @@
                   <hr>
                   <h5>Score: {{recipe.spoonacularScore}}</h5>
                   <hr>
-                  <div>{{recipe.instructions}}</div>
+                  <div><h4 align="center" id="instructions_heading">Steps</h4>
+                    <div id=instructions_div>
+                    <ol class='spaced_numbers'>
+                    {% for step in recipe.analyzedInstructions.0.steps %}
+                        <li>{{step.step}}</li>
+                    {% endfor %}
+                    </ol>
+                    </div>
+                  </div>
+                    <div id="more_information_button"><a  href="{{recipe.sourceUrl}}" target="blank" class="btn">More infromation</a></div>
                 </div>
               </div>
-
   </div>
-  <div id="recipe_ingredients">
+  <!-- <div id="recipe_ingredients">
       <ul>
       {% for ingredient in recipe.extendedIngredients %}
           <li>{{ingredient.original}}</li>
@@ -34,18 +50,11 @@
       </ul>
       <div id="instructions_div">
           <br/>
-          <h2 align="center" id="instructions_heading">Instructions</h2>
-          <div id=instructions_div>
-          <ol class='spaced_numbers'>
-          {% for step in recipe.analyzedInstructions.0.steps %}
-              <li>{{step.step}}</li>
-          {% endfor %}
-          </ol>
-          </div>
+
           <a  href="{{recipe.sourceUrl}}" target="blank" class="btn">More infromation</a>
       </div>
 
-  </div>
+  </div> -->
 </div>
   <!-- </div> -->
 
@@ -104,7 +113,9 @@
         align-items:flex-start;
         margin: 0 auto;
     }
+
     #recipe_thumbnail{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         margin-top: 20px;
         margin-right: 20px;
     }
@@ -130,6 +141,7 @@
         align-items: flex-end;
     } */
     #instructions_heading{
+        margin-bottom:0px;
         color: teal;
     }
 .spaced_numbers{
@@ -169,6 +181,16 @@
   flex-direction:row
   align-items:flex-start;
   justify-content:flex-start
+}
+
+
+#more_information_button{
+  display:flex;
+  justify-content:center;
+  flex-direction:row;
+}
+h3{
+  color:teal;
 }
 </style>
 {% endblock %}
