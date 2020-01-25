@@ -7,7 +7,7 @@ from .secrets import spoonacular_api_key
 from django.contrib.auth.decorators import login_required
 
 
-# ?apiKey=YOUR-API-KEY.
+
 def index(request):
     recipes = Recipe.objects.all()
     context = {
@@ -25,10 +25,6 @@ def ingredients(request):
     return render(request, 'pantryapp/ingredients.html', context)
 
 
-
-        # favorited_recipes_ids.append(recipe.spoonacular_recipe_id)
-    # print(favorited_recipes_ids)
-
 # saves the ingredient to the database
 def save_ingredient(request):
     print(request.POST)
@@ -39,7 +35,7 @@ def save_ingredient(request):
     return HttpResponseRedirect(reverse('pantryapp:ingredients'))
 
 
-# clears the ingredient table
+# clears the ingredient from the table
 def clear_table(request):
     ingredients = request.user.ingredients.all()
     ingredients.delete()
@@ -47,7 +43,7 @@ def clear_table(request):
 
 
 
-# gets the recipes when the make recipe button is clicked
+# gets the recipes from the api when the make recipe button is clicked
 @login_required
 def get_recipes(request):
     ingredients = request.user.ingredients.all()
@@ -55,15 +51,10 @@ def get_recipes(request):
     # loops over the orm to get the instances
     for ingredient in ingredients:
         ingredient_params.append(ingredient.name)
-
     ingredient_params=','.join(ingredient_params)
-
     url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + ingredient_params + ','+ '&number=100' + '&apiKey=' + spoonacular_api_key
-
     response = requests.get(url)
-    # print(response.text)
     recipes = json.loads(response.text)
-    print(recipes[0]['id'])
     for recipe in recipes:
         if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
             recipe['favorited'] = True
@@ -107,7 +98,7 @@ def favorite_recipe(request):
         recipe.save()
     else:
         recipe.delete()
-        
+
 
     return HttpResponse('ok')
 

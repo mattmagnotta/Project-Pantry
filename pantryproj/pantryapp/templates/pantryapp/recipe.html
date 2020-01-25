@@ -66,7 +66,6 @@
   let favorite_bts = document.querySelectorAll('.favorite_bts')
   for (let i=0; i<favorite_bts.length; ++i) {
       favorite_bts[i].addEventListener('click', function(event) {
-          // let url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + recipe_id + '&apiKey=' + spoonacular_api_key
           let data = {
             recipe_id: this.dataset.recipe_id,
             recipe_title: this.dataset.recipe_title,
