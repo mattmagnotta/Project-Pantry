@@ -1,5 +1,5 @@
 # Project-Pantry
-An ingredient tracking application
+An ingredient tracking web-application
 
 
 ## Project Overview
@@ -20,20 +20,14 @@ the perfect chocolate-cherry-walnut
 dessert.
 
 
-#### Mealplanning
-Although this is a milestone type 3, I would like to tap into the database and offer customized meal plans or allow the user build their own using the interactive meal planning tool to schedule meals for each day of the week.
-
-
-
 # Functionality
+Pantry uses Python and Django on the backend, HTML/CSS, JavaScript, & Materialize on the frontend.
+When you arrive at the landing page you will be met with a parallax with some information about the app.
+![](screenshots/landing_page.png)
 
-You will arrive at the landing page. The landing page will be simple and clean. It will have a login/register feature on the landing page.
+ From there you can either create an account or login, I used Djangos user system to make this happen. After you have logged in you be able to navigate to a 'My Ingredients' tab. Once there you are now able to inventory the ingredients your have on hand OR that you want to use. From here you can click the get recipes button, once that is clicked it makes a call to the Spoonacular API. You will then be routed to a page consisting of cards with an image of the recipe, a button to make the recipe, and a button to save the recipe. Once you find the recipe of your choice, you can click the make recipe to be routed to a page consisting of ingredients and instructions on how to make that recipe. It also has a button for 'more information',when clicked, it will take you to the website where the original recipe was posted. Pantry allows you to save recipes to your 'My Recipes' view. This view also consists of cards, they are sorted by most recent.
 
-Once you login in you will be redirected to the users homepage. The homepage will consist of, a side nav, a randomly generated carousel of random recipes of the day, and a 'just for you section'. The 'just for you section' will contain your log of recipe collections, meal plans, and a food journal.
 
-The side nav will be a flyout nav. Once a user clicks the hamburger button the side nav will slide out. Starting from the top of the nav and moving downwards, the nav will have a link to go to the users feed(home), a link to plan and shop, and a link to run the inventory tool. Then the majority of the nav will be made up of saved recipes and user collections. (e.g) a folder for breakfeast, a folder for lunches, and a folder for dinners.
-
-When you click on "collection folder", you can select recipes. When a recipe is selected it will go to a view that renders a price breakdown of each ingredient graph and a nutritional data for each ingredient graph. This view will also show the user which ingredients they need to purchase in order to make the recipe.
 
 # Data model
 
@@ -57,4 +51,4 @@ During this phase I hope to start stitching together all the pieces to make web 
 The final phase ... I hope to work out all the bugs and tweak final design during this phase. I would like to have the inventory tool working and completed, as thats the meat and potatoes of the web application.
 
 #### After the dust settles
-I hope to add the meal planning feature to allow the users to log recipes for certain days of the week. 
+I hope to add the meal planning feature to allow the users to log recipes for certain days of the week.

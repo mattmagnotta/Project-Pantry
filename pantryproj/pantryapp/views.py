@@ -106,31 +106,13 @@ def favorite_recipe(request):
 # displays the users saved recipes
 @login_required
 def saved_recipes(request):
-    # db_recipes = request.user.recipes.all()
-    # # favorited_recipes_ids = []
-    # recipes = [] # pass to the template
-    # for recipe in db_recipes:
-    #     recipe_id = recipe.spoonacular_recipe_id
-    #     url = 'https://api.spoonacular.com/recipes/' + str(recipe_id)  + '/information/?apiKey=' + spoonacular_api_key
-    #     response = requests.get(url)
-    #     recipe_information = json.loads(response.text)
-    #     recipes.append(recipe_information)
     recipes = request.user.recipes.all()
-    # for recipe in recipes:
-    #     if Recipe.objects.filter(user=request.user, spoonacular_recipe_id=recipe['id']).first():
-    #         recipe['favorited'] = True
-    #     else:
-    #         recipe['favorited'] = False
+
     context = {
         'recipes' : recipes
     }
     return render(request, 'pantryapp/saved_recipes.html', context)
-        # recipes = Recipe.objects.all()
-        # context = {
-        #     'recipes': recipes
-        # }
-        # return render(request, 'pantryapp/saved_recipes.html', context)
-# unsaves a recipes
+    
 def unfavorite_recipe(request,):
     user = request.user
     recipe = Recipe.objects.filter(user=user, spoonacular_recipe_id=id).first()
