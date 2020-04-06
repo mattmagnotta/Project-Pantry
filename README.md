@@ -24,19 +24,24 @@ dessert.
 Pantry uses Python and Django on the backend, HTML/CSS, JavaScript, & Materialize on the frontend.
 When you arrive at the landing page you will be met with a parallax with some information about the app.
 ![](screenshots/landing_page.png)
----
+
+
  From here you can either create an account or login, I used Djangos user system to make this happen. After you have logged in you will then be able to navigate to a 'My Ingredients' tab. Once there you are now able to inventory the ingredients you have on hand OR that you want to use.
  ![](screenshots/ingredients.png)
----
+
+
 After you finish adding the ingredients, you can click the get recipes button, once that is clicked it makes a call to the Spoonacular API. You will then be routed to a page consisting of cards with an image of the recipe, a button to make the recipe, and a button to save the recipe.
  ![](screenshots/get_recipes.png)
- ---
+
+
 Once you find the recipe of your choice, you can click the make recipe to be routed to a page consisting of ingredients and instructions on how to make that recipe. It also has a button for 'more information', when clicked, it will take you to the website where the original recipe was posted. It will also show you if you already have a recipe saved or not.
  ![](screenshots/make_recipes.png)
- ---
+
+
 Pantry allows you to save recipes to your 'My Recipes' view. This view also consists of cards, they are sorted by most recent.
  ![](screenshots/my_recipes.png)
- ---
+
+
 
 
 
