@@ -24,9 +24,8 @@ dessert.
 Pantry uses Python and Django on the backend, HTML/CSS, JavaScript, & Materialize on the frontend.
 When you arrive at the landing page you will be met with a parallax with some information about the app.
 ![](screenshots/landing_page.png)
-
-
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
  From here you can either create an account or login, I used Djangos user system to make this happen. After you have logged in you will then be able to navigate to a 'My Ingredients' tab. Once there you are now able to inventory the ingredients you have on hand OR that you want to use.
  ![](screenshots/ingredients.png)
